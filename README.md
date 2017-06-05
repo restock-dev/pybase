@@ -4,6 +4,7 @@
 Basic python setup for projects, very helpful for new projects/new developers.
 
 ## Screenshots
+![alt text](https://github.com/eggins/pybase/raw/master/includes/screenshot.png "PyBase Preview")
 
 ## Installation
 This program is currently only working with Python 2.7.x. Future support for Python3 will be implemented in the future.
