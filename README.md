@@ -12,8 +12,6 @@ Navigate into the folder you clone the respository into (eg. `cd C:/projects/pyt
 
 Install all required packages using pip - `pip install -r requirements.txt`
 
-Copy & Rename `setup/config.example.json` to `config/config.json`, and update your details.
-
 ## Development Guide
 Instructions coming soon.
 
