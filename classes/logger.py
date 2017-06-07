@@ -9,14 +9,14 @@ class logger:
 	def __init__(self):
 		# setting an array of colours to be used
 		self.colours = {
-			"error" 			: "\033[91m",
-			"success" 			: "\033[92m",
-			"info" 				: "\033[96m",
-			"debug" 			: "\033[95m",
-			"yellow" 			: "\033[93m",
-			"lightpurple" 		: "\033[94m",
-			"lightgray" 		: "\033[97m",
-			"clear"				: "\033[00m"
+			"error" : "\033[91m",
+			"success" : "\033[92m",
+			"info" : "\033[96m",
+			"debug" : "\033[95m",
+			"yellow" : "\033[93m",
+			"lightpurple" : "\033[94m",
+			"lightgray" : "\033[97m",
+			"clear"	: "\033[00m"
 		}
 
 	def log(self, message="", color="", file="", shown=True, showtime=True, nocolor=""):
