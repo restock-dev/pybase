@@ -5,52 +5,57 @@ import time, sys
 
 class logger:
 
-	# initalise base file naming structure for the logger
+	# initalise base variable structure
 	def __init__(self):
-		self.fileName = "log.txt"
+		# setting an array of colours to be used
+		self.colours = {
+			"error" 		: "\033[91m",
+			"success" 		: "\033[92m",
+			"info" 			: "\033[96m",
+			"debug" 		: "\033[95m",
+			"yellow" 		: "\033[93m",
+			"lightpurple" 	: "\033[94m",
+			"lightgray" 	: "\033[97m",
+			"clear"			: "\033[00m"
+		}
 
-	# logging function to print colours easier
-	def log(self, msg="", color="", file="", shown=True, showtime=True):
+	def log(self, message="", color="", file="", shown=True, showtime=True, nocolor=""):
 		
-		# check colour variable and set text colour when printing
-		if color.lower() == "error":
-			textColour = "\033[91m"
-		elif color.lower() == "success":
-			textColour = "\033[92m"
-		elif color.lower() == "info":
-			textColour = "\033[96m"
-		elif color.lower() == "debug":
-			textColour = "\033[95m"
-		elif color.lower() == "yellow":
-			textColour = "\033[93m"
-		elif color.lower() == "lightpurple":
-			textColour = "\033[94m"
-		elif color.lower() == "lightgray":
-			textColour = "\033[97m"
+		# define the current time when calling the logger as HOUR:MINUTE:SECOND
+		currentTime = time.strftime("%H:%M:%S")
+
+		# define which colour is being used
+		try:
+			colourString = self.colours[color]
+		except:
+			colourString = ""
+
+		# construct time string
+		if showtime:
+			timestring = "[%s] " % currentTime
 		else:
-			textColour = ""
+			timestring = ""
 
-		# set current time for printing in H:M:S msg
-		currenttime = time.strftime("%H:%M:%S")
+		# path together the message and the clear colour
+		messageString = message + self.colours['clear']
+		noColourString = message
 
-		# check if msg is to be shown to terminal
-		if shown:
-			if showtime == False:
-				sys.stdout.write("%s %s %s\n" % (textColour, str(msg), "\033[00m"))
-			else:
-				sys.stdout.write("[%s]%s %s %s\n" % (currenttime, textColour, str(msg), "\033[00m"))
-			sys.stdout.flush()
+		# if there is text in the "nocolor" field
+		# add : and paste the content afterward
+		if nocolor:
+			messageString += ": %s" % nocolor 
+			noColourString += ": %s" % nocolor 
 
+		# determine the final string to be printed and logged to file
+		finalString = "%s%s%s\n" % (timestring, colourString, str(messageString))
+		noColourFinalString = "%s%s\n" % (timestring, str(noColourString))
+
+		# print from the system to the terminal
+		# this method helps stop overlap when threading
+		sys.stdout.write(finalString)
+		sys.stdout.flush()
+
+		# print message to file if requested
 		if file:
-			if file == self.fileName:
-				with open(self.fileName, "a") as f:
-					if showtime == False:
-						f.write("{}\n".format(msg))
-					else:
-						f.write("[{}] {}\n".format(currenttime, msg))
-			else:
-				with open(file, "a") as f:
-					if showtime == False:
-						f.write("{}\n".format(msg))
-					else:
-						f.write("[{}] {}\n".format(currenttime, msg))
+			with open(file, "a") as f:
+				f.write(noColourFinalString)
