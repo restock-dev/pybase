@@ -36,7 +36,7 @@ class logger:
 			timestring = ""
 
 		# path together the message and the clear colour
-		messageString = str(message + self.colours['clear'])
+		messageString = str(message) + self.colours['clear']
 		noColourString = str(message)
 
 		# if there is text in the "nocolor" field
