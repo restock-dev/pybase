@@ -36,8 +36,8 @@ class logger:
 			timestring = ""
 
 		# path together the message and the clear colour
-		messageString = message + self.colours['clear']
-		noColourString = message
+		messageString = str(message + self.colours['clear'])
+		noColourString = str(message)
 
 		# if there is text in the "nocolor" field
 		# add : and paste the content afterward
