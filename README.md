@@ -1,5 +1,5 @@
 # PyBase
-**Version:** 1.0
+**Version:** 1.1
 
 Basic python setup for projects, very helpful for new projects/new developers.
 
@@ -7,7 +7,8 @@ Basic python setup for projects, very helpful for new projects/new developers.
 ![alt text](https://github.com/eggins/pybase/raw/master/includes/screenshot.png "PyBase Preview")
 
 ## Installation
-This program is currently only working with Python 2.7.x. Future support for Python3 will be implemented in the future.
+This program has been updated to work with Python 3 - Python 3.7.x
+
 
 Navigate into the folder you clone the respository into (eg. `cd C:/projects/python-base`)
 
